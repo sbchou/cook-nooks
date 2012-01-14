@@ -21,15 +21,15 @@ class Recipe(db.Model):
   
 
 
-def guestbook_key(guestbook_name=None):
-  """Constructs a datastore key for a Guestbook entity with guestbook_name."""
-  return db.Key.from_path('Guestbook', guestbook_name or 'default_guestbook')    
+def cookbook_key(cookbook_name=None):
+  """Constructs a datastore key for a Cookbook entity with cookbook_name."""
+  return db.Key.from_path('Cookbook', cookbook_name or 'default_cookbook')    
 
-class Guestbook(webapp2.RequestHandler):
+class Cookbook(webapp2.RequestHandler):
     def get(self):
-        guestbook_name=self.request.get('guestbook_name')
+        cookbook_name=self.request.get('cookbook_name')
         recipes_query = Recipe.all().ancestor(
-                                                  guestbook_key(guestbook_name)).order('-date')
+                                                  cookbook_key(cookbook_name)).order('-date')
         recipes = recipes_query.fetch(10)
         
         if users.get_current_user():
@@ -54,17 +54,17 @@ class Guestbook(webapp2.RequestHandler):
         # the same entity group. Queries across the single entity   group will be
         # consistent. However, the write rate to a single entity group should
         # be limited to ~1/second.
-        guestbook_name = self.request.get('guestbook_name')
-        recipe = Recipe(parent=guestbook_key(guestbook_name))
+        cookbook_name = self.request.get('cookbook_name')
+        recipe = Recipe(parent=cookbook_key(cookbook_name))
 
         if users.get_current_user():
             recipe.author = users.get_current_user()
 
         recipe.content = self.request.get('content')
         recipe.put()
-        self.redirect('/?' + urllib.urlencode({'guestbook_name': guestbook_name}))
+        self.redirect('/?' + urllib.urlencode({'cookbook_name': cookbook_name}))
 
 
-app = webapp2.WSGIApplication([('/', Guestbook),
-                               ('/sign', Guestbook)],
+app = webapp2.WSGIApplication([('/', Cookbook),
+                               ('/sign', Cookbook)],
                               debug=True)
