@@ -1,5 +1,5 @@
 indexes:
-- kind: Greeting
+- kind: Recipe
   ancestor: yes
   properties:
   - name: author
