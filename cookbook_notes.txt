@@ -1,0 +1,5 @@
+Issues: 
++stop redirecting after posting
++main page to create new cookbook
+++deal with url issues
++you can only add recipe if it's your cookbook

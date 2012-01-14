@@ -6,7 +6,7 @@ threadsafe: true
 
 handlers:
 - url: /.*
-  script: helloworld.app
+  script: cookbook.app
 
 libraries:
 - name: jinja2
