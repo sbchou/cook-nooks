@@ -42,22 +42,20 @@ class MainPage(webapp.RequestHandler):
 class DiscussionPageHandler(webapp.RequestHandler):
 	
 	def get(self, id):
-		query = GqlQuery("SELECT *FROM Post ORDER BY date ASC")
+		query = Post.all().filter('discussion_id =', id).order('-date')
 		posts = []
 		for item in query:
-			if item.discussion_id  == id:
-				posts.append(item)
+			posts.append(item)		
 		values = {'posts' : posts}
 		self.response.out.write(template.render("discussion.html", values))
 		
 	def post(self, id):
 		if bool(self.request.get('content')) == False:
 			person = self.request.get('author')
-			query = GqlQuery("SELECT *FROM Post ORDER BY date ASC")
+			query = Post.all().filter('discussion_id =', id).order('-date')
 			posts = []
 			for item in query:
-				if item.discussion_id  == id:
-					posts.append(item)
+				posts.append(item)		
 			error_state = True
 			values = {'posts' : posts, 'person': person, 'error_state': error_state}
 			self.response.out.write(template.render("discussion.html", values))
@@ -65,22 +63,20 @@ class DiscussionPageHandler(webapp.RequestHandler):
 			new_post = Post(content = self.request.get('content'), author = self.request.get('author'), discussion_id  = id)
 			new_post.put()
 			person = self.request.get('author')
-			query = GqlQuery("SELECT *FROM Post ORDER BY date ASC")
+			query = Post.all().filter('discussion_id =', id).order('-date')
 			posts = []
 			for item in query:
-				if item.discussion_id  == id:
-					posts.append(item)
+				posts.append(item)		
 			error_state = False
 			values = {'posts' : posts, 'person': person, 'error_state': error_state}
 			self.response.out.write(template.render("discussion.html", values))
 		
 class MessageHandler(webapp.RequestHandler):
 	def get(self, id):
-		query = GqlQuery("SELECT *FROM Post ORDER BY date ASC")
+		query = Post.all().filter('discussion_id =', id).order('-date')
 		posts = []
 		for item in query:
-			if item.discussion_id  == id:
-				posts.append(item)
+			posts.append(item)		
 		self.response.out.write(template.render("chatscreen.html", {'posts':posts}))
 
 def main():
