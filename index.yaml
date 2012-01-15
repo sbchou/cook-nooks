@@ -18,6 +18,12 @@ indexes:
 
 - kind: Recipe
   properties:
+  - name: cookbook_id
+  - name: date
+    direction: desc
+
+- kind: Recipe
+  properties:
   - name: discussion_id
   - name: date
     direction: desc

@@ -9,14 +9,14 @@ import re
 import random
 from google.appengine.ext.db import GqlQuery
 
-#defines single model for program, a post has content, author, discussion_id , date
-class Post(db.Model):
+#defines single model for program, a recipe has content, author, cookbook_id , date
+class Recipe(db.Model):
 	content = db.StringProperty(required = False)
 	author = db.StringProperty(required = False)
-	discussion_id  = db.StringProperty(required = True)
+	cookbook_id  = db.StringProperty(required = True)
 	date = db.DateTimeProperty(auto_now_add = True)
 	
-#handler for the main page, renders opening template and creates a post object when post is clicked
+#handler for the main page, renders opening template and creates a recipe object when post is clicked
 class MainPage(webapp.RequestHandler):
 	def get(self):
 		error_state = False
@@ -33,55 +33,55 @@ class MainPage(webapp.RequestHandler):
 			self.response.out.write(template.render("main.html", values))
 			
 		else:
-			new_post = Post(content = self.request.get('content'), author = self.request.get('author'), discussion_id  = cookbook_name)
-			new_post.put()
+			new_recipe = Recipe(content = self.request.get('content'), author = self.request.get('author'), cookbook_id  = cookbook_name)
+			new_recipe.put()
 			self.redirect('/' + cookbook_name)
 
 
-#handler for discussion page--searches all posts and orders by date, then finds all the posts with the correct discussion_id 	
-class DiscussionPageHandler(webapp.RequestHandler):
+#handler for cookbook page--searches all recipes and orders by date, then finds all the recipes with the correct cookbook_id 	
+class CookbookPageHandler(webapp.RequestHandler):
 	
 	def get(self, id):
-		query = Post.all().filter('discussion_id =', id).order('-date')
-		posts = []
+		query = Recipe.all().filter('cookbook_id =', id).order('-date')
+		recipes = []
 		for item in query:
-			posts.append(item)		
-		values = {'posts' : posts}
-		self.response.out.write(template.render("discussion.html", values))
+			recipes.append(item)		
+		values = {'recipes' : recipes}
+		self.response.out.write(template.render("cookbook.html", values))
 		
 	def post(self, id):
 		if bool(self.request.get('content')) == False:
 			person = self.request.get('author')
-			query = Post.all().filter('discussion_id =', id).order('-date')
-			posts = []
+			query = Recipe.all().filter('cookbook_id =', id).order('-date')
+			recipes = []
 			for item in query:
-				posts.append(item)		
+				recipes.append(item)		
 			error_state = True
-			values = {'posts' : posts, 'person': person, 'error_state': error_state}
-			self.response.out.write(template.render("discussion.html", values))
+			values = {'recipes' : recipes, 'person': person, 'error_state': error_state}
+			self.response.out.write(template.render("cookbook.html", values))
 		else:
-			new_post = Post(content = self.request.get('content'), author = self.request.get('author'), discussion_id  = id)
-			new_post.put()
+			new_recipe = Recipe(content = self.request.get('content'), author = self.request.get('author'), cookbook_id  = id)
+			new_recipe.put()
 			person = self.request.get('author')
-			query = Post.all().filter('discussion_id =', id).order('-date')
-			posts = []
+			query = Recipe.all().filter('cookbook_id =', id).order('-date')
+			recipes = []
 			for item in query:
-				posts.append(item)		
+				recipes.append(item)		
 			error_state = False
-			values = {'posts' : posts, 'person': person, 'error_state': error_state}
-			self.response.out.write(template.render("discussion.html", values))
+			values = {'recipes' : recipes, 'person': person, 'error_state': error_state}
+			self.response.out.write(template.render("cookbook.html", values))
 		
-class MessageHandler(webapp.RequestHandler):
+class RecipeHandler(webapp.RequestHandler):
 	def get(self, id):
-		query = Post.all().filter('discussion_id =', id).order('-date')
-		posts = []
+		query = Recipe.all().filter('cookbook_id =', id).order('-date')
+		recipes = []
 		for item in query:
-			posts.append(item)		
-		self.response.out.write(template.render("chatscreen.html", {'posts':posts}))
+			recipes.append(item)		
+		self.response.out.write(template.render("chatscreen.html", {'recipes':recipes}))
 
 def main():
 	app = webapp.WSGIApplication([
-		(r'/$', MainPage), (r'/mess/(\w*)', MessageHandler), (r'/(\d*)', DiscussionPageHandler)], debug=True)
+		(r'/$', MainPage), (r'/mess/(\w*)', RecipeHandler), (r'/(\d*)', CookbookPageHandler)], debug=True)
 	wsgiref.handlers.CGIHandler().run(app)
 
 #implements program

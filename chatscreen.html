@@ -1,13 +1,13 @@
-{% for post in posts %}
+{% for recipe in recipes %}
 <div id="contentpart">
-	<div id="posts">
-		{{ post.content }}
+	<div id="recipes">
+		{{ recipe.content }}
 	</div>
 	<div id="from">from
-		{% ifequal post.author None %}
+		{% ifequal recipe.author None %}
 			Anonymous
 		{% else %}
-			{{ post.author }}
+			{{ recipe.author }}
 		{% endifequal %}
 	</div>
 </div>
