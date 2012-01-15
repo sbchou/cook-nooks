@@ -1,4 +1,18 @@
-#posts
+#cookbookTitle
+{
+text-align:center;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+font-size: 20px;
+}
+
+#cookbookAuthor
+{
+text-align:center;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+font-size: 20px;
+}
+
+#recipes
 {
 text-align:center;
 font-family: "Trebuchet MS", Helvetica, sans-serif;
@@ -31,7 +45,7 @@ font-family: "Trebuchet MS", Helvetica, sans-serif;
 font-size: 20px;
 text-align:center;
 }
-#from
+#content
 {
 color:gray;
 font-family: "Trebuchet MS", Helvetica, sans-serif;
@@ -49,7 +63,7 @@ font-size: 2em;
 text-align: center;
 color: red;
 }
-#chatcontent
+#recipeTitle
 {
 font-family: "Trebuchet MS", Helvetica, sans-serif;
 font-size: 2em;

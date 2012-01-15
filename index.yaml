@@ -27,3 +27,9 @@ indexes:
   - name: discussion_id
   - name: date
     direction: desc
+
+- kind: Recipe
+  ancestor: yes
+  properties:
+  - name: date
+    direction: desc

@@ -1,14 +1,10 @@
 {% for recipe in recipes %}
 <div id="contentpart">
-	<div id="recipes">
-		{{ recipe.content }}
+	<div id="recipeTitle">
+		{{ recipe.title }}
 	</div>
-	<div id="from">from
-		{% ifequal recipe.author None %}
-			Anonymous
-		{% else %}
-			{{ recipe.author }}
-		{% endifequal %}
+	<div id="content"> 
+		{{ recipe.content }}
 	</div>
 </div>
 {% endfor %}

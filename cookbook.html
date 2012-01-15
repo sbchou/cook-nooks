@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="/stylesheets/discussion.css" />
-		<title>Diskussy!</title>
+		<title>Cook Nooks!</title>
 		<script language="javascript" type="text/javascript">
 				function autofocus(){
 					document.getElementById('content').focus();
@@ -15,7 +15,7 @@
 					url: "/mess" + the_url,
 					cache: false,
 					success: function(html){
-						$("#chatcontent").html(html);
+						$("#recipeContent").html(html);
 					}
 				});
 			}
@@ -23,34 +23,34 @@
 			</script>
 	</head>
 	<body onLoad="autofocus()">
-		<div id="chatcontent">
+		<div id="cookbookTitle">
+			{{ myCookbook.name }}
+		</div>
+	
+		<div id="recipes">
 			{% for recipe in recipes %}
-			<div id="recipes">
-				{{ recipe.content }}
+			<div id="recipeTitle">
+				{{ recipe.title }}
 			</div>
-			<div id="from">from
-				{% ifequal recipe.author None %}
-					Anonymous
-				{% else %}
-					{{ recipe.author }}
-				{% endifequal %}		
+			<div id="content">
+				{{ recipe.content }}		
 			</div>
 			{% endfor %}
 		</div>
 		<form action ="" name="form1" id="form1" method ="post" accept-charset ="utf-8">
-			<p id="para1">From: <input type="text" name="author" value= "{% if person %}{{ person }}{% endif %}" id="author"></p>
-			<p id="para2">Message: <input type="text" name="content" value="" id="content"></p>
+			<p id="para1"><input type="text" name="title" value= "" id="title"></p>
+			<p id="para2"><input type="text" name="content" value="" id="content"></p>
 			<p id="para3"><input type= "submit" value="Post!"></p>
 		</form>
 		<script type="text/javascript">
 			$("#form1").submit(function(event){
 				event.preventDefault();
 				var $form = $( this ),
-					person = $form.find('input[name="author"]').val(),
+					title = $form.find('input[name="title"]').val(),
 					content = $form.find('input[name="content"]').val(),
 					url = $form.attr('action');
 				
-				$.post( url, {author:person, content:content},
+				$.post( url, {title:title, content:content},
 					function(data){
 						var content = $(data).find('#content');
 						//$("#result").html(content);
@@ -61,7 +61,7 @@
 				});
 		</script>
 		{% if error_state %}
-		<div id="error">Please enter a content!</div>
+		<div id="error">Please enter a recipe!</div>
 		{% endif %}
 	</body>
 </html>
