@@ -11,9 +11,9 @@
 <body class="bgimage" onLoad="formfocus()">
 <h1 id="thetitle">Cook Nooks!</h1>
 <form action ="" method ="post" accept-charset ="utf-8">
-	<p id="para1">From:   <input type="text" name="author" value= "" id="author"></p>
-	<p id="para2">Message: <input type="text" name="content" value="" id="content"></p>
-	<p id="para3"><input type= "submit" value="Post!"></p>
+	<p id="para1">your name:   <input type="text" name="author" value= "" id="author"></p>
+	<p id="para2">Cookbook title: <input type="text" name="cookbookName" value="" id="cookbookName"></p>
+	<p id="para3"><input type= "submit" value="Create my Cook Nook!"></p>
 </form>
 
 {% if no_errors %}
@@ -22,7 +22,7 @@ and you have a diskussion that you can link to people.  Anybody with the link ca
 {% endif %}
 
 {% if error_state %}
-<div id="error">Please enter a content!</div>
+<div id="error">Please enter a cookbook name!</div>
 {% endif %}
 <div id="credit">A Sophie Chou Project</div>
 </body>

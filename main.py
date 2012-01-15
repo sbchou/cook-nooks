@@ -9,11 +9,16 @@ import re
 import random
 from google.appengine.ext.db import GqlQuery
 
+
+class Cookbook(db.Model):
+	author = db.StringProperty(required = False)
+	name = db.StringProperty(required = True)
+	date = db.DateTimeProperty(auto_now_add = True)
+
 #defines single model for program, a recipe has content, author, cookbook_id , date
 class Recipe(db.Model):
+	title = db.StringProperty(required = False)
 	content = db.StringProperty(required = False)
-	author = db.StringProperty(required = False)
-	cookbook_id  = db.StringProperty(required = True)
 	date = db.DateTimeProperty(auto_now_add = True)
 	
 #handler for the main page, renders opening template and creates a recipe object when post is clicked
@@ -25,16 +30,20 @@ class MainPage(webapp.RequestHandler):
 		self.response.out.write(template.render("main.html", values))
 	
 	def post(self):
+		#gotta fix this
 		cookbook_name = str(random.randint(1000000000, 9999999999))
-		if bool(self.request.get('content')) == False:
+		
+		#a cookbook must have a name since that's how we identify it
+		if bool(self.request.get('cookbookName')) == False:
 			error_state = True
 			no_errors = False
 			values = {'error_state': error_state, 'no_errors': no_errors}
 			self.response.out.write(template.render("main.html", values))
 			
 		else:
-			new_recipe = Recipe(content = self.request.get('content'), author = self.request.get('author'), cookbook_id  = cookbook_name)
-			new_recipe.put()
+			#create a new cookbook
+			new_cookbook = Cookbook(author = self.request.get('author'), name = self.request.get('cookbookName'))
+			new_cookbook.put()
 			self.redirect('/' + cookbook_name)
 
 
