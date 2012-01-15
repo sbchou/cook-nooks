@@ -1,13 +1,11 @@
-application: nifty-gifty
+application: little-cheers
 version: 1
-runtime: python27
+runtime: python
 api_version: 1
-threadsafe: true
 
 handlers:
-- url: /.*
-  script: cookbook.app
+- url: /stylesheets
+  static_dir: stylesheets
 
-libraries:
-- name: jinja2
-  version: latest
+- url: /.*
+  script: main.py

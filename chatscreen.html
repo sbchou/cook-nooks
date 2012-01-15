@@ -1,0 +1,14 @@
+{% for post in posts %}
+<div id="contentpart">
+	<div id="posts">
+		{{ post.content }}
+	</div>
+	<div id="from">from
+		{% ifequal post.author None %}
+			Anonymous
+		{% else %}
+			{{ post.author }}
+		{% endifequal %}
+	</div>
+</div>
+{% endfor %}

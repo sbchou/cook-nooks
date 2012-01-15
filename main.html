@@ -1,0 +1,29 @@
+<html>
+<head>
+<script language="javascript" type="text/javascript">
+		function formfocus() {
+			document.getElementById('author').focus();
+			}
+</script>
+<link rel="stylesheet" type="text/css" href="/stylesheets/sidstyle.css" />
+<title>Diskussy!</title>
+</head>
+<body class="bgimage" onLoad="formfocus()">
+<h1 id="thetitle">Diskussy!</h1>
+<form action ="" method ="post" accept-charset ="utf-8">
+	<p id="para1">From:   <input type="text" name="author" value= "" id="author"></p>
+	<p id="para2">Message: <input type="text" name="content" value="" id="content"></p>
+	<p id="para3"><input type= "submit" value="Post!"></p>
+</form>
+
+{% if no_errors %}
+<div id="intro">Welcome to Diskussy! To start diskussing, all you have to do is type in your name and a content,
+and you have a diskussion that you can link to people.  Anybody with the link can join in, so start diskussing today!</div>
+{% endif %}
+
+{% if error_state %}
+<div id="error">Please enter a content!</div>
+{% endif %}
+<div id="credit">A Sid Shanker Project</div>
+</body>
+</html>

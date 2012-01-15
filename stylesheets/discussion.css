@@ -1,0 +1,58 @@
+#posts
+{
+text-align:center;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+font-size: 20px;
+}
+#credit
+{
+width:170px;
+height:30px;
+margin-top:400px;
+font-size: 1.3em;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+float:right;
+}
+#para1
+{
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+font-size: 20px;
+text-align:center;
+}
+#para2 
+{
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+font-size: 20px;
+text-align:center;
+}
+#para3 
+{
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+font-size: 20px;
+text-align:center;
+}
+#from
+{
+color:gray;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+font-size: 20px;
+text-align: center;
+}
+#error
+{
+width:800px;
+height:230px;
+margin-left: 300px;
+margin-top: 60px;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+font-size: 2em;
+text-align: center;
+color: red;
+}
+#chatcontent
+{
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+font-size: 2em;
+text-align: center;
+color: purple;
+}
