@@ -21,7 +21,7 @@ class Cookbook(db.Model):
 #defines single model for program, a recipe has content, author, cookbook_id , date
 class Recipe(db.Model):
 	title = db.StringProperty(required = True)
-	content = db.StringProperty(required = True)
+	content = db.StringProperty(multiline = True) #required = True ?
 	date = db.DateTimeProperty(auto_now_add = True)
 	
 #handler for the main page, renders opening template and creates a recipe object when post is clicked

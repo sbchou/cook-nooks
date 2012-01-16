@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="/stylesheets/discussion.css" />
+		<link rel="stylesheet" type="text/css" href="/stylesheets/cookbook.css" />
 		<title>Diskussy!</title>
 		<script language="javascript" type="text/javascript">
 				function autofocus(){
@@ -23,13 +23,13 @@
 			</script>
 	</head>
 	<body onLoad="autofocus()">
-		<div id="recipeTitle">
+		<div id="cookbookTitle">
 			{{ myCookbook.name }}
 		</div>
 	
 		<div id="recipecontent">
 			{% for recipe in recipes %}
-			<div id="recipeTitle">
+			<div id="title">
 				{{ recipe.title }}
 			</div>
 			<div id="content">
@@ -37,6 +37,7 @@
 			</div>
 			{% endfor %}
 		</div>
+		
 		<form action ="" name="form1" id="form1" method ="post" accept-charset ="utf-8">
 			<p id="para1">Recipe Title: <br></br> <input type="text" name="title" value= "" id="title"></p>
 			<p id="para2">Instructions: <br></br> <input type="text" name="content" value="" id="content"></p>

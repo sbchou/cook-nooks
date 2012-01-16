@@ -5,19 +5,19 @@
 			document.getElementById('author').focus();
 			}
 </script>
-<link rel="stylesheet" type="text/css" href="/stylesheets/sidstyle.css" />
+<link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
 <title>Cook Nooks!</title>
 </head>
 <body class="bgimage" onLoad="formfocus()">
 <h1 id="thetitle">Cook Nooks!</h1>
 <form action ="" method ="post" accept-charset ="utf-8">
-	<p id="para1">your name:   <input type="text" name="author" value= "" id="author"></p>
-	<p id="para2">Cookbook title: <input type="text" name="cookbookName" value="" id="cookbookName"></p>
+	<p id="para1">My name:   <input type="text" name="author" value= "" id="author"></p>
+	<p id="para2">My cookbook title: <input type="text" name="cookbookName" value="" id="cookbookName"></p>
 	<p id="para3"><input type= "submit" value="Create my Cook Nook!"></p>
 </form>
 
 {% if no_errors %}
-<div id="intro">Meow Meow Meow Meow Meow Meow Meow Meow Meow Meow Meow Meow Meow Meow Meow </div>
+<div id="intro">Meow Meow Meow Meow </div>
 {% endif %}
 
 {% if error_state %}
