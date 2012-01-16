@@ -1,0 +1,20 @@
+query = GqlQuery("SELECT *FROM Recipe ORDER BY date ASC")
+			recipes = []
+			for item in query:
+				if item.discussion_id  == id:
+					recipes.append(item)
+					
+					
+query = Recipe.all().filter('discussion_id =', id).order('-date')
+		recipes = []
+		for item in query:
+			recipes.append(item)		
+			
+			
+					
+query = Post.all().filter('discussion_id =', id).order('-date')
+		posts = []
+		for item in query:
+			posts.append(item)		
+			
+			
