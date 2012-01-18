@@ -8,29 +8,9 @@ Created because I wanted an easier and more aesthetically appealing way to store
 In short: a recipe box Hemingway would approve of.
 
 WARNING:
-Cook-Nooks is still evolving, so use with caution!
+Cook-Nooks is still evolving, so use with caution! Currently, there is no delete recipe feature.
 
 To-Do:
 Print recipe feature
 Email recipe feature
 Delete recipe feature
-
-
-it's Your nook
-using an old google doc
-your personal recipe box, easy on eyes, on the web
-
-
-Flip Clock
-
-A very simple flip clock written in Javascript. Intended for use in the library when I'm not using my laptop/phone/tablet and want to see a nice, big clock instead. Mostly written to explore simple JS and responsive design concepts.
-
-Done
-
-javascript to update the time every minute
-general styling of the clock face (not perfect yet)
-To-Do
-
-animation for flip
-responsive design
-light version (cream face, with red accents)
