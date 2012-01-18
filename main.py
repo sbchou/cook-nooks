@@ -10,15 +10,15 @@ import random
 from google.appengine.ext.db import GqlQuery
 
 
+#error state decoder: 0 = no error, 1 = must enter name, 2 = name already taken, 3 = no recipe name entered
+
 class Cookbook(db.Model):
 	#you can leave author blank if you must, cookbooks are ID'd by name
 	author = db.StringProperty(required = False)
 	name = db.StringProperty(required = True)
 	date = db.DateTimeProperty(auto_now_add = True)
-	#fix this
-	cookbook_id = db.StringProperty(required = True)
 
-#defines single model for program, a recipe has content, author, cookbook_id , date
+#defines single model for program, a recipe has content, author, date
 class Recipe(db.Model):
 	title = db.StringProperty(required = True)
 	content = db.StringProperty(multiline = True) #required = True ?
@@ -27,36 +27,44 @@ class Recipe(db.Model):
 #handler for the main page, renders opening template and creates a recipe object when post is clicked
 class MainPage(webapp.RequestHandler):
 	def get(self):
-		error_state = False
+		error_state = 0
 		no_errors = True
 		values = {'error_state': error_state, 'no_errors': no_errors}
 		self.response.out.write(template.render("main.html", values))
 	
-	def post(self):
-		#gotta fix this
-		random_id = str(random.randint(1000000000, 9999999999))
-		
+	def post(self):		
 		#a cookbook must have a name since that's how we identify it
 		if bool(self.request.get('cookbookName')) == False:
-			error_state = True
+			error_state = 1
 			no_errors = False
 			values = {'error_state': error_state, 'no_errors': no_errors}
 			self.response.out.write(template.render("main.html", values))
 			
 		else:
-			#create a new cookbook
 			cookbook_name = self.request.get('cookbookName')
-			new_cookbook = Cookbook(author = self.request.get('author'), name = cookbook_name, cookbook_id = random_id)
-			new_cookbook.put()
-			self.redirect('/' + random_id)
+			
+			#if no cookbook with this id exists make new cookbook, with the name as its key
+			if Cookbook.get_by_key_name(cookbook_name) == None:
+				new_cookbook = Cookbook(key_name = cookbook_name, author = self.request.get('author'), name = cookbook_name)
+				new_cookbook.put()
+				self.redirect('/' + cookbook_name)
+			
+			#else show error message
+			else:
+				error_state = 2
+				no_errors = False
+				values = {'error_state': error_state, 'no_errors': no_errors}
+				self.response.out.write(template.render("main.html", values))
 
 
-#handler for cookbook page--searches all recipes and orders by date, then finds all the recipes with the correct cookbook_id 	
+#handler for cookbook page--searches all recipes and orders by date, then finds all the recipes with the correct cookbook key 	
 class CookbookPageHandler(webapp.RequestHandler):
 	
 	def get(self, id):
-		cookbook_query = Cookbook.all().filter('cookbook_id =', id)
-		myCookbook = cookbook_query.get()
+		cookbook_name = id
+		myCookbook = Cookbook.get_by_key_name(cookbook_name)
+		#cookbook_query = Cookbook.all().filter('cookbook_id =', id)
+		#myCookbook = cookbook_query.get()
 		recipe_query = Recipe.all().ancestor(myCookbook).order('-date')
 		recipes = []
 		for item in recipe_query:
@@ -66,19 +74,22 @@ class CookbookPageHandler(webapp.RequestHandler):
 		
 	def post(self, id):
 		if bool(self.request.get('title')) == False:
-			#person = self.request.get('author')
-			cookbook_query = Cookbook.all().filter('cookbook_id =', id)
-			myCookbook = cookbook_query.get()
+			#cookbook_query = Cookbook.all().filter('cookbook_id =', id)
+			#myCookbook = cookbook_query.get()
+			cookbook_name = id
+			myCookbook = Cookbook.get_by_key_name(cookbook_name)
 			recipe_query = Recipe.all().ancestor(myCookbook).order('-date')
 			recipes = []
 			for item in recipe_query:
 				recipes.append(item)		
-			error_state = True
+			error_state = 3
 			values = {'recipes' : recipes, 'error_state': error_state}
 			self.response.out.write(template.render("cookbook.html", values))
 		else:
-			cookbook_query = Cookbook.all().filter('cookbook_id =', id)
-			myCookbook = cookbook_query.get()
+			#cookbook_query = Cookbook.all().filter('cookbook_id =', id)
+			#myCookbook = cookbook_query.get()
+			cookbook_name = id
+			myCookbook = Cookbook.get_by_key_name(cookbook_name)
 			new_recipe = Recipe(parent = myCookbook, title = self.request.get('title'), content = self.request.get('content'))
 			new_recipe.put()
 			
@@ -87,14 +98,16 @@ class CookbookPageHandler(webapp.RequestHandler):
 			for item in recipe_query:
 				recipes.append(item)		
 				
-			error_state = False
+			error_state = 0
 			values = {'recipes' : recipes, 'error_state': error_state}
 			self.response.out.write(template.render("cookbook.html", values))
 		
 class RecipeHandler(webapp.RequestHandler):
 	def get(self, id):
-		cookbook_query = Cookbook.all().filter('cookbook_id =', id)
-		myCookbook = cookbook_query.get()
+		#cookbook_query = Cookbook.all().filter('cookbook_id =', id)
+		#myCookbook = cookbook_query.get()
+		cookbook_name = id
+		myCookbook = Cookbook.get_by_key_name(cookbook_name)
 		recipe_query = Recipe.all().ancestor(myCookbook).order('-date')
 		recipes = []
 		for item in recipe_query:
@@ -102,8 +115,7 @@ class RecipeHandler(webapp.RequestHandler):
 		self.response.out.write(template.render("chatscreen.html", {'recipes':recipes}))
 
 def main():
-	app = webapp.WSGIApplication([
-		(r'/$', MainPage), (r'/mess/(\w*)', RecipeHandler), (r'/(\d*)', CookbookPageHandler)], debug=True)
+	app = webapp.WSGIApplication([(r'/$', MainPage), (r'/mess/(\w*)', RecipeHandler), (r'/(\w*)', CookbookPageHandler)], debug=True)
 	wsgiref.handlers.CGIHandler().run(app)
 
 #implements program

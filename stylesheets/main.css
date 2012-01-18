@@ -4,6 +4,7 @@
 	background-repeat: no-repeat;
 }
 
+
 #thetitle
 {
 font-family: "Trebuchet MS", Helvetica, sans-serif;
@@ -42,6 +43,17 @@ text-align:center;
 font-family: ‘Trebuchet MS’, Helvetica, sans-serif;
 font-size: 20px;
 }
+
+/*Style of input fields*/
+
+#author
+{
+}
+#cookbookName
+{
+white-space: nowrap;
+}
+
 #intro
 {
 width:800px;

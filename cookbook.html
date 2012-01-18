@@ -62,8 +62,8 @@
 					document.getElementById('content').focus();
 				});
 		</script>
-		{% if error_state %}
-		<div id="error">Please enter a content!</div>
-		{% endif %}
+		{% ifequal error_state 3 %}
+		<div id="error">Please enter a recipe name!</div>
+		{% endifequal %}
 	</body>
 </html>

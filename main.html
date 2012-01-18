@@ -20,9 +20,18 @@
 <div id="intro">Meow Meow Meow Meow </div>
 {% endif %}
 
-{% if error_state %}
+{% ifequal error_state 1 %}
 <div id="error">Please enter a cookbook name!</div>
-{% endif %}
+{% endifequal %}
+
+{% ifequal error_state 2 %}
+<div id="error">Sorry, that cookbook name is already taken.</div>
+{% endifequal %}
+
+{% ifequal error_state 3 %}
+<div id="error">Please enter a recipe name!</div>
+{% endifequal %}
+
 <div id="credit">A Sophie Chou Project</div>
 </body>
 </html>
