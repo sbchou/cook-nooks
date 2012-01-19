@@ -8,12 +8,13 @@ import sys
 import re
 import random
 from google.appengine.ext.db import GqlQuery
+from google.appengine.api import users
 
 
 #error state decoder: 0 = no error, 1 = must enter name, 2 = name already taken, 3 = no recipe name entered
 
 class Cookbook(db.Model):
-	#you can leave author blank if you must, cookbooks are ID'd by name
+	user = db.UserProperty(required = True)
 	author = db.StringProperty(required = False)
 	name = db.StringProperty(required = True)
 	#the difference b/t the name and the key name is that key name replaces the whitespaces with dashes
@@ -27,13 +28,17 @@ class Recipe(db.Model):
 	
 #handler for the main page, renders opening template and creates a recipe object when post is clicked
 class MainPage(webapp.RequestHandler):
-	def get(self):
-		error_state = 0
-		no_errors = True
-		values = {'error_state': error_state, 'no_errors': no_errors}
-		self.response.out.write(template.render("main.html", values))
-	
-	def post(self):		
+	def get(self):	
+		#you must be signed in to use!
+		if users.get_current_user():
+			error_state = 0
+			no_errors = True
+			values = {'error_state': error_state, 'no_errors': no_errors}
+			self.response.out.write(template.render("main.html", values))
+		else:
+			self.redirect(users.create_login_url(self.request.uri))
+			
+	def post(self):	
 		#a cookbook must have a name since that's how we identify it
 		if bool(self.request.get('cookbookName')) == False:
 			error_state = 1
@@ -45,9 +50,9 @@ class MainPage(webapp.RequestHandler):
 			#the cookbook key is constructed out of its name, except replacing whitespace w/dashes for URL purposes
 			cookbook_key = self.request.get('cookbookName').strip().replace(' ', '-')
 			#if no cookbook with this id exists make new cookbook, with the FORMATTED name (no whitespace!) as its key
-			
+				
 			if Cookbook.get_by_key_name(cookbook_key) == None:
-				new_cookbook = Cookbook(key_name = cookbook_key, author = self.request.get('author'), name = self.request.get('cookbookName'))
+				new_cookbook = Cookbook(key_name = cookbook_key, user = users.get_current_user(), author = self.request.get('author'), name = self.request.get('cookbookName'))
 				new_cookbook.put()
 				self.redirect('/' + cookbook_key)
 			
@@ -58,7 +63,7 @@ class MainPage(webapp.RequestHandler):
 				values = {'error_state': error_state, 'no_errors': no_errors}
 				self.response.out.write(template.render("main.html", values))
 
-
+			
 #handler for cookbook page--searches all recipes and orders by date, then finds all the recipes with the correct cookbook key 	
 class CookbookPageHandler(webapp.RequestHandler):
 	

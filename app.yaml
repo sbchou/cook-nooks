@@ -9,3 +9,6 @@ handlers:
 
 - url: /.*
   script: main.py
+
+- url: /_ah/login_required
+  script: do_openid_login.py
