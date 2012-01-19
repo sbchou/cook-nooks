@@ -8,7 +8,7 @@ Created because I wanted an easier and more aesthetically appealing way to store
 In short: a recipe box Hemingway would approve of.
 
 WARNING:
-Cook-Nooks is still evolving, so use with caution! Currently, any person can post to another's wall! Also, there is no delete recipe feature.
+Cook-Nooks is still evolving, so use with caution! Currently, there is no delete recipe feature.
 
 To-Do:
 

@@ -146,7 +146,7 @@ class RecipeHandler(webapp.RequestHandler):
 		self.response.out.write(template.render("chatscreen.html", {'recipes':recipes}))
 
 def main():
-	app = webapp.WSGIApplication([(r'/$', MainPage), (r'/mess/(\w*?)', RecipeHandler), (r'/(.*?)', CookbookPageHandler)], debug=True)
+	app = webapp.WSGIApplication([(r'/$', MainPage), (r'/mess/(\w*?)', RecipeHandler), (r'/([\w\-]+?)', CookbookPageHandler)], debug=True)
 	wsgiref.handlers.CGIHandler().run(app)
 
 #implements program
