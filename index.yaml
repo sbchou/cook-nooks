@@ -10,24 +10,6 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
-- kind: Post
-  properties:
-  - name: discussion_id
-  - name: date
-    direction: desc
-
-- kind: Recipe
-  properties:
-  - name: cookbook_id
-  - name: date
-    direction: desc
-
-- kind: Recipe
-  properties:
-  - name: discussion_id
-  - name: date
-    direction: desc
-
 - kind: Recipe
   ancestor: yes
   properties:
