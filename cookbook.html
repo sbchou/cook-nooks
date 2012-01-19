@@ -39,11 +39,15 @@
 			{% endfor %}
 		</div>
 		
+		{% if is_author %}
 		<form action ="" name="form1" id="form1" method ="post" accept-charset ="utf-8">
 			<p id="para1">Recipe Title: <br></br> <input type="text" name="title" value= "" id="title"></p>
 			<p id="para2">Instructions: <br></br> <textarea name="content" rows="6" cols="20" id="content"></textarea></p>
 			<p id="para3"><input type= "submit" value="Post!"></p>
 		</form>
+		{% endif %}
+		
+		
 		<script type="text/javascript">
 			$("#form1").submit(function(event){
 				event.preventDefault();

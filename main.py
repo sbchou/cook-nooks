@@ -12,6 +12,7 @@ from google.appengine.api import users
 
 
 #error state decoder: 0 = no error, 1 = must enter name, 2 = name already taken, 3 = no recipe name entered
+#4= incorrect format for cookbook name
 
 class Cookbook(db.Model):
 	user = db.UserProperty(required = True)
@@ -46,6 +47,13 @@ class MainPage(webapp.RequestHandler):
 			values = {'error_state': error_state, 'no_errors': no_errors}
 			self.response.out.write(template.render("main.html", values))
 			
+		#a cookbook name can contain only letters, digits, and underscores (aka a regex word!)
+		elif re.match("[\w\s]+$", self.request.get('cookbookName')) == None:
+			error_state = 4
+			no_errors = False
+			values = {'error_state': error_state, 'no_errors': no_errors}
+			self.response.out.write(template.render("main.html", values))
+				
 		else:
 			#the cookbook key is constructed out of its name, except replacing whitespace w/dashes for URL purposes
 			cookbook_key = self.request.get('cookbookName').strip().replace(' ', '-')
@@ -69,26 +77,44 @@ class CookbookPageHandler(webapp.RequestHandler):
 	
 	def get(self, id):
 		cookbook_key = id
-		myCookbook = Cookbook.get_by_key_name(cookbook_key)
+		myCookbook = Cookbook.get_by_key_name(cookbook_key)		
 		recipe_query = Recipe.all().ancestor(myCookbook).order('-date')
 		recipes = []
 		for item in recipe_query:
 			recipes.append(item)		
-		values = {'myCookbook': myCookbook, 'recipes' : recipes}
+			
+		#check if the viewer is the author
+		current_user = users.get_current_user()
+		if current_user == myCookbook.user:
+			is_author = True
+		else:
+			is_author = False
+			
+		values = {'myCookbook': myCookbook, 'recipes' : recipes, 'is_author' : is_author}
 		self.response.out.write(template.render("cookbook.html", values))
 		
 	def post(self, id):
 		if bool(self.request.get('title')) == False:
+			error_state = 3
 			cookbook_key = id
 			myCookbook = Cookbook.get_by_key_name(cookbook_key)
 			recipe_query = Recipe.all().ancestor(myCookbook).order('-date')
 			recipes = []
 			for item in recipe_query:
 				recipes.append(item)		
-			error_state = 3
-			values = {'recipes' : recipes, 'error_state': error_state}
+		
+			#check if the viewer is the author
+			current_user = users.get_current_user()
+			if current_user == myCookbook.user:
+				is_author = True
+			else:
+				is_author = False
+			
+			values = {'recipes' : recipes, 'error_state': error_state, 'is_author': is_author}
 			self.response.out.write(template.render("cookbook.html", values))
+		
 		else:
+			error_state = 0
 			cookbook_key = id
 			myCookbook = Cookbook.get_by_key_name(cookbook_key)
 			new_recipe = Recipe(parent = myCookbook, title = self.request.get('title'), content = self.request.get('content'))
@@ -99,8 +125,14 @@ class CookbookPageHandler(webapp.RequestHandler):
 			for item in recipe_query:
 				recipes.append(item)		
 				
-			error_state = 0
-			values = {'recipes' : recipes, 'error_state': error_state}
+			#check if the viewer is the author
+			current_user = users.get_current_user()
+			if current_user == myCookbook.user:
+				is_author = True
+			else:
+				is_author = False
+				
+			values = {'recipes' : recipes, 'error_state': error_state, 'is_author': is_author}
 			self.response.out.write(template.render("cookbook.html", values))
 		
 class RecipeHandler(webapp.RequestHandler):
@@ -114,7 +146,7 @@ class RecipeHandler(webapp.RequestHandler):
 		self.response.out.write(template.render("chatscreen.html", {'recipes':recipes}))
 
 def main():
-	app = webapp.WSGIApplication([(r'/$', MainPage), (r'/mess/(\w*)', RecipeHandler), (r'/([A-Za-z0-9-]+)', CookbookPageHandler)], debug=True)
+	app = webapp.WSGIApplication([(r'/$', MainPage), (r'/mess/(\w*?)', RecipeHandler), (r'/(.*?)', CookbookPageHandler)], debug=True)
 	wsgiref.handlers.CGIHandler().run(app)
 
 #implements program
