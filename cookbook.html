@@ -47,6 +47,11 @@
 		</form>
 		{% endif %}
 		
+		<div id="logoutLink">
+			{% if loggedIn %}
+			<a href="{{ logout_url }}">Logout!</a>
+			{% endif %}
+		</div>
 		
 		<script type="text/javascript">
 			$("#form1").submit(function(event){

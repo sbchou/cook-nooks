@@ -90,7 +90,16 @@ class CookbookPageHandler(webapp.RequestHandler):
 		else:
 			is_author = False
 			
-		values = {'myCookbook': myCookbook, 'recipes' : recipes, 'is_author' : is_author}
+		#create logout link
+		if users.get_current_user():
+			logout_url = users.create_logout_url(self.request.uri)	
+			loggedIn = True
+			
+		else:
+			logout_url = ""
+			loggedIn = False
+			
+		values = {'myCookbook': myCookbook, 'recipes' : recipes, 'is_author' : is_author, 'logout_url' : logout_url, 'loggedIn' : loggedIn}
 		self.response.out.write(template.render("cookbook.html", values))
 		
 	def post(self, id):
@@ -110,7 +119,17 @@ class CookbookPageHandler(webapp.RequestHandler):
 			else:
 				is_author = False
 			
-			values = {'recipes' : recipes, 'error_state': error_state, 'is_author': is_author}
+			#create logout link
+			if users.get_current_user():
+				logout_url = users.create_logout_url(self.request.uri)		
+				loggedIn = True
+			
+			else:
+				logout_url = ""
+				loggedIn = False
+			
+			
+			values = {'recipes' : recipes, 'error_state': error_state, 'is_author': is_author, 'logout_url' : logout_url, 'loggedIn' : loggedIn}
 			self.response.out.write(template.render("cookbook.html", values))
 		
 		else:
@@ -132,7 +151,16 @@ class CookbookPageHandler(webapp.RequestHandler):
 			else:
 				is_author = False
 				
-			values = {'recipes' : recipes, 'error_state': error_state, 'is_author': is_author}
+			#create logout link
+			if users.get_current_user():
+				logout_url = users.create_logout_url(self.request.uri)		
+				loggedIn = True
+			
+			else:
+				logout_url = ""
+				loggedIn = False
+			
+			values = {'recipes' : recipes, 'error_state': error_state, 'is_author': is_author, 'logout_url' : logout_url, 'loggedIn': loggedIn}
 			self.response.out.write(template.render("cookbook.html", values))
 		
 class RecipeHandler(webapp.RequestHandler):

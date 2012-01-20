@@ -20,6 +20,8 @@ text-align:center;
 font-family: "Trebuchet MS", Helvetica, sans-serif;
 font-size: 20px;
 }
+
+
 #credit
 {
 width:170px;
@@ -64,6 +66,14 @@ font-size: 20px;
 text-align:center;
 white-space: pre-line; 
 color: gray;
+}
+
+#logoutLink
+{
+
+text-align:center;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+font-size: 20px;
 }
 
 #error
