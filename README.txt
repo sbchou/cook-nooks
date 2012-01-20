@@ -5,7 +5,7 @@ A very simple and user-friendly web app for chefs and foodies to create a Cook-N
 
 Created because I wanted an easier and more aesthetically appealing way to store my collection of favorite recipes on the internet than a Google Doc. Existing options seemed to be more focused on sharing recipes and social networking, whereas I needed a personal journal, to share (or not to share!) at my own disposal. Cook-Nooks can be accessed directly via its URL and its super-simple recipe posting makes it easier on smartphones.
 
-In short: a recipe box Hemingway would approve of.
+In short: a recipe box Hemingway would approve of!
 
 WARNING:
 Cook-Nooks is still evolving, so use with caution! Currently, there is no delete recipe feature.
