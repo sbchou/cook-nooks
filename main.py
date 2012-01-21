@@ -162,7 +162,12 @@ class CookbookPageHandler(webapp.RequestHandler):
 			
 			values = {'recipes' : recipes, 'error_state': error_state, 'is_author': is_author, 'logout_url' : logout_url, 'loggedIn': loggedIn}
 			self.response.out.write(template.render("cookbook.html", values))
-		
+
+ 
+
+
+
+	
 class RecipeHandler(webapp.RequestHandler):
 	def get(self, id):
 		cookbook_key = id
