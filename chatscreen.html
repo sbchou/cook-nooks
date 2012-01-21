@@ -8,7 +8,9 @@
 		{{ recipe.content }}
 	</div>
 	
-	
+	<div id= "delete">
+		<a href="/delete/{{recipe.parent.key.name}}/{{recipe.title}}">Delete!</a>
+	</div>
 	
 </div>
 {% endfor %}

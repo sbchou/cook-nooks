@@ -11,6 +11,8 @@
 	<body onLoad="autofocus()">
 		<div id="cookbookTitle">
 			{{ myCookbook.name }}
+			<br></br>
+			a cookbook by {{myCookbook.author}}
 		</div>
 	
 		<div id="recipecontent">
@@ -44,7 +46,9 @@
 			{% endif %}
 		</div>
 		
-		
+		<div id= "credit">
+		a Sophie Chou creation
+		</div>
 		
 		
 		{% ifequal error_state 3 %}
