@@ -1,46 +1,56 @@
-.bgimage
+/*hyperlink effects*/
+
+A:link {text-decoration: none}
+A:visited {color: #000000; text-decoration: none}
+A:active {color: #000000; text-decoration: none}
+A:hover {background-color:#FF704D}
+
+body
 {
-	background-image: url("pupcakebackground.png");
+background-color:#fdedaa
+;
+}
+
+
+/*.bgimage
+{
+	background-image: url("cooknooks_bkgd.png");
 	background-repeat: no-repeat;
 }
+*/
+
 
 
 #thetitle
 {
-font-family: "Trebuchet MS", Helvetica, sans-serif;
+font-family: 'Cabin Sketch', cursive;
 font-size: 4em;
 text-align:center;
 }
+
 #credit
 {
-width:1350px;
-height:30px;
-margin-top:55px;
-font-size: 1.3em;
-/*background-color: black;*/
-color: white;
-float: left;
-font-family: "Trebuchet MS", Helvetica, sans-serif;
-text-align:right;
+margin-top: 350px;
+font-family: 'Cabin Sketch', cursive;
+font-size: 1.2 em;
+text-align:center;
 }
 #para1
 {
-margin-right:5px;
 text-align:center;
-font-family: ‘Trebuchet MS’, Helvetica, sans-serif;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
 font-size: 20px;
 }
 #para2 
 {
-margin-right:25px;
 text-align:center;
-font-family: ‘Trebuchet MS’, Helvetica, sans-serif;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
 font-size: 20px;
 }
 #para3 
 {
 text-align:center;
-font-family: ‘Trebuchet MS’, Helvetica, sans-serif;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
 font-size: 20px;
 }
 
@@ -53,23 +63,28 @@ font-size: 20px;
 {
 }
 
-#intro
-{
-width:800px;
-height:230px;
-margin-left: 300px;
-margin-top: 100px;
-font-family: "Trebuchet MS", Helvetica, sans-serif;
-font-size: 1 em;
+#logo{
+margin-top: 5%;
 text-align: center;
 }
+
+#intro
+{
+float: left;
+margin-top: 5%;
+margin-left: 30%;
+margin-right: 30%;
+margin-bottom: 10%;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+font-size: 1.1 em;
+text-align: center;
+}
+
+
 #error
 {
-width:800px;
-height:230px;
-margin-left: 300px;
-margin-top: 60px;
-font-family: ‘Trebuchet MS’, Helvetica, sans-serif;
+
+font-family: "Trebuchet MS", Helvetica, sans-serif;
 font-size: 2em;
 text-align: center;
 color: red;

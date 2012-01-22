@@ -1,9 +1,18 @@
+
+A:link {color: blue; text-decoration: none}
+A:visited {color: #000000; text-decoration: none}
+A:active {color: #000000; text-decoration: none}
+A:hover {background-color:#FF704D}
+
+body
+{
+background-color:#fdedaa;
+}
 #cookbookTitle
 {
 text-align:center;
-font-family: "Trebuchet MS", Helvetica, sans-serif;
-font-size: 35px;
-color: purple;
+font-family: 'Cabin Sketch', cursive;
+font-size: 4em;
 }
 
 #cookbookAuthor
@@ -15,22 +24,19 @@ font-size: 20px;
 
 #recipecontent
 {
-
 text-align:center;
 font-family: "Trebuchet MS", Helvetica, sans-serif;
 font-size: 20px;
 }
 
-
 #credit
 {
-width:170px;
-height:110px;
-margin-top:400px;
-font-size: 1.3em;
-font-family: "Trebuchet MS", Helvetica, sans-serif;
-float:right;
+margin-top: 350px;
+font-family: 'Cabin Sketch', cursive;
+font-size: 1.2 em;
+text-align:center;
 }
+
 #para1
 {
 font-family: "Trebuchet MS", Helvetica, sans-serif;
@@ -54,7 +60,7 @@ text-align:center;
 #title
 {
 font-family: "Trebuchet MS", Helvetica, sans-serif;
-font-size: 20px;
+font-size: 25px;
 text-align:center;
 }
 
@@ -65,12 +71,10 @@ font-family: "Trebuchet MS", Helvetica, sans-serif;
 font-size: 20px;
 text-align:center;
 white-space: pre-line; 
-color: gray;
 }
 
 #logoutLink
 {
-
 text-align:center;
 font-family: "Trebuchet MS", Helvetica, sans-serif;
 font-size: 20px;
