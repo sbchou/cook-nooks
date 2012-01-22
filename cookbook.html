@@ -28,11 +28,11 @@
 				{{ recipe.content }}	
 			</div>
 
-			{% if is_author %}
-				<div id= "delete">
+			<div id= "delete">
+				{% if is_author %}
 				<a href="/delete/{{recipe.parent.key.name}}/{{recipe.title}}">Delete!</a>
-				</div>
-			{% endif %}
+				{% endif %}
+			</div>
 
 			{% endfor %}
 		</div>
