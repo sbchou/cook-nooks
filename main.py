@@ -129,7 +129,7 @@ class CookbookPageHandler(webapp.RequestHandler):
 				loggedIn = False
 
 
-			values = {'recipes' : recipes, 'is_author': is_author, 'logout_url' : logout_url, 'loggedIn' : loggedIn, 'error_state': error_state }
+			values = {'myCookbook': myCookbook, 'recipes' : recipes, 'is_author': is_author, 'logout_url' : logout_url, 'loggedIn' : loggedIn, 'error_state': error_state }
 			self.response.out.write(template.render("cookbook.html", values))
 
 		elif re.match("[\w\s]+$", self.request.get('title')) == None:
@@ -158,7 +158,7 @@ class CookbookPageHandler(webapp.RequestHandler):
 				loggedIn = False
 
 
-			values = {'recipes' : recipes, 'is_author': is_author, 'logout_url' : logout_url, 'loggedIn' : loggedIn, 'error_state': error_state}
+			values = {'myCookbook': myCookbook,'recipes' : recipes, 'is_author': is_author, 'logout_url' : logout_url, 'loggedIn' : loggedIn, 'error_state': error_state}
 			self.response.out.write(template.render("cookbook.html", values))
 
 
@@ -197,7 +197,7 @@ class CookbookPageHandler(webapp.RequestHandler):
 				logout_url = ""
 				loggedIn = False
 
-			values = {'recipes' : recipes, 'error_state': error_state, 'is_author': is_author, 'logout_url' : logout_url, 'loggedIn': loggedIn}
+			values = {'myCookbook': myCookbook,'recipes' : recipes, 'error_state': error_state, 'is_author': is_author, 'logout_url' : logout_url, 'loggedIn': loggedIn}
 			self.response.out.write(template.render("cookbook.html", values))
 
 			self.redirect('/' + id)
