@@ -44,20 +44,31 @@
 			<p id="para3"><input type= "submit" value="Post!"></p>
 		</form>
 		{% endif %}
+		
 
 		<div id="logoutLink">
 			{% if loggedIn %}
 			<a href="{{ logout_url }}">Logout!</a>
 			{% endif %}
 		</div>
+		
+		<div id="error">
+		{% ifequal error_state 3 %}
+		Please enter a recipe name!
+		{% endifequal %}
+		</div>
+		
+		
+		<div id="error">
+		{% ifequal error_state 4 %}
+		Recipe names can contain letters, digits and underscores only.
+		{% endifequal %}
+		</div>
+		
 
 		<div id= "credit">
 		a Sophie Chou creation
 		</div>
 
-
-		{% ifequal error_state 3 %}
-		<div id="error">Please enter a recipe name!</div>
-		{% endifequal %}
 	</body>
 </html>

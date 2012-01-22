@@ -80,6 +80,16 @@ white-space: pre-line;
 letter-spacing:1px;
 }
 
+#error
+{
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+font-size: 20px;
+text-align:center;
+white-space: pre-line; 
+letter-spacing:1px;
+color:red
+}
+
 #logoutLink
 {
 text-align:center;
@@ -88,15 +98,3 @@ font-size: 20px;
 letter-spacing:1px;
 }
 
-#error
-{
-width:800px;
-height:230px;
-margin-left: 300px;
-margin-top: 60px;
-font-family: "Trebuchet MS", Helvetica, sans-serif;
-font-size: 2em;
-text-align: center;
-color: red;
-letter-spacing:1px;
-}

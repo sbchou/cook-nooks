@@ -129,13 +129,50 @@ class CookbookPageHandler(webapp.RequestHandler):
 				loggedIn = False
 
 
-			values = {'recipes' : recipes, 'error_state': error_state, 'is_author': is_author, 'logout_url' : logout_url, 'loggedIn' : loggedIn}
+			values = {'recipes' : recipes, 'is_author': is_author, 'logout_url' : logout_url, 'loggedIn' : loggedIn, 'error_state': error_state }
 			self.response.out.write(template.render("cookbook.html", values))
+
+		elif re.match("[\w\s]+$", self.request.get('title')) == None:
+			error_state = 4
+			cookbook_key = id
+			myCookbook = Cookbook.get_by_key_name(cookbook_key)
+			recipe_query = Recipe.all().ancestor(myCookbook).order('-date')
+			recipes = []
+			for item in recipe_query:
+				recipes.append(item)		
+
+			#check if the viewer is the author
+			current_user = users.get_current_user()
+			if current_user == myCookbook.user:
+				is_author = True
+			else:
+				is_author = False
+
+			#create logout link
+			if users.get_current_user():
+				logout_url = users.create_logout_url(self.request.uri)		
+				loggedIn = True
+
+			else:
+				logout_url = ""
+				loggedIn = False
+
+
+			values = {'recipes' : recipes, 'is_author': is_author, 'logout_url' : logout_url, 'loggedIn' : loggedIn, 'error_state': error_state}
+			self.response.out.write(template.render("cookbook.html", values))
+
+
+
+
 
 		else:
 			error_state = 0
 			cookbook_key = id
 			myCookbook = Cookbook.get_by_key_name(cookbook_key)
+			
+			
+			
+			
 			new_recipe = Recipe(parent = myCookbook, title = self.request.get('title'), content = self.request.get('content'))
 			new_recipe.put()
 
@@ -163,7 +200,7 @@ class CookbookPageHandler(webapp.RequestHandler):
 			values = {'recipes' : recipes, 'error_state': error_state, 'is_author': is_author, 'logout_url' : logout_url, 'loggedIn': loggedIn}
 			self.response.out.write(template.render("cookbook.html", values))
 
-		self.redirect('/' + id)
+			self.redirect('/' + id)
 
 
 class RecipeHandler(webapp.RequestHandler):
