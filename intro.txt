@@ -1,9 +1,0 @@
-A very simple and user-friendly web app for chefs and foodies to create a Cook-Nook: a personal log of their recipes in their own little corner of the web. Features a single-column Tumblr-style layout.
-
-Created because I wanted an easier and more aesthetically appealing way to store my collection of favorite recipes on the internet than a Google Doc. Existing options seemed to be more focused on sharing recipes and social networking, whereas I needed a personal journal, to share (or not to share!) at my own disposal. Cook-Nooks can be accessed directly via its URL and its super-simple recipe posting makes it easier on smartphones.
-
-In short: a recipe box Hemingway would approve of!
-
-
-A simple and user-friendly option to store a personal recipe log (to share, or not to share!) for chefs and foodies in their own little nook of the web instead of a clumsy old Google Doc. Cook-Nooks can be accessed directly via its URL and its super-simple recipe posting makes it easier on smartphones.
-A recipe box Hemingway would approve of!
