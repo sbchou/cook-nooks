@@ -136,7 +136,8 @@ class CookbookPageHandler(webapp.RequestHandler):
 			error_state = 0
 			cookbook_key = id
 			myCookbook = Cookbook.get_by_key_name(cookbook_key)
-			new_recipe = Recipe(parent = myCookbook, title = self.request.get('title'), content = self.request.get('content'))
+			recipe_key = self.request.get('title').strip().replace(' ', '-')			
+			new_recipe = Recipe(parent = myCookbook, key_name = cookbook_key, title = self.request.get('title'), content = self.request.get('content'))
 			new_recipe.put()
 			
 			recipe_query = Recipe.all().ancestor(myCookbook).order('-date')
@@ -179,10 +180,10 @@ class RecipeHandler(webapp.RequestHandler):
 class DeleteHandler(webapp.RequestHandler):
 #needs to handle exceptions...
 
-    def get(self, cookbook_id, recipe_name):
+    def get(self, cookbook_id, recipe_key):
    		cookbook_key = cookbook_id
 		myCookbook = Cookbook.get_by_key_name(cookbook_key)
-		my_recipe = Recipe.all().ancestor(myCookbook).filter('title = ', recipe_name).get()
+		my_recipe = Recipe.all().ancestor(myCookbook).filter('key_name = ', recipe_key).get()
 		my_recipe.delete()		 
 		self.redirect('/' + cookbook_key)
     

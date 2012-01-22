@@ -17,7 +17,7 @@
 		<div id= "cookbookAuthor">
 			a cookbook by {{myCookbook.author}}
 		</div>
-	
+
 		<div id="recipecontent">
 			{% for recipe in recipes %}
 			<div id="title">
@@ -27,14 +27,16 @@
 			<div id="content">
 				{{ recipe.content }}	
 			</div>
-			
-			<div id= "delete">
+
+			{% if is_author %}
+				<div id= "delete">
 				<a href="/delete/{{recipe.parent.key.name}}/{{recipe.title}}">Delete!</a>
-			</div>
-			
+				</div>
+			{% endif %}
+
 			{% endfor %}
 		</div>
-		
+
 		{% if is_author %}
 		<form action ="" name="form1" id="form1" method ="post" accept-charset ="utf-8">
 			<p id="para1">Recipe Title: <br></br> <input type="text" name="title" value= "" id="title"></p>
@@ -42,18 +44,18 @@
 			<p id="para3"><input type= "submit" value="Post!"></p>
 		</form>
 		{% endif %}
-		
+
 		<div id="logoutLink">
 			{% if loggedIn %}
 			<a href="{{ logout_url }}">Logout!</a>
 			{% endif %}
 		</div>
-		
+
 		<div id= "credit">
 		a Sophie Chou creation
 		</div>
-		
-		
+
+
 		{% ifequal error_state 3 %}
 		<div id="error">Please enter a recipe name!</div>
 		{% endifequal %}
