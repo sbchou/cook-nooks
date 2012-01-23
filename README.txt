@@ -12,6 +12,8 @@ Cook-Nooks is still evolving, so please use with caution!
 
 To-Do:
 
+List all books per user
+Delete whole book
 Print recipe feature
 Email recipe feature
 Filter, order
