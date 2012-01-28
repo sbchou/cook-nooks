@@ -27,14 +27,22 @@ class Recipe(db.Model):
 	content = db.TextProperty()  
 	date = db.DateTimeProperty(auto_now_add = True)
 
+
 #handler for the main page, renders opening template and creates a recipe object when post is clicked
 class MainPage(webapp.RequestHandler):
 	def get(self):	
 		#you must be signed in to use!
 		if users.get_current_user():
+			user = users.get_current_user()
 			error_state = 0
 			no_errors = True
-			values = {'error_state': error_state, 'no_errors': no_errors}
+			#can you filter by user??
+			cookbook_query = Cookbook.all().filter('user =', user)
+			cookbooks = []
+			for item in cookbook_query:
+				cookbooks.append(item)		
+			
+			values = {'user': user, 'cookbooks': cookbook, error_state': error_state, 'no_errors': no_errors}
 			self.response.out.write(template.render("main.html", values))
 		else:
 			self.redirect(users.create_login_url(self.request.uri))
