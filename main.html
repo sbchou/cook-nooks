@@ -13,6 +13,25 @@
 <body class="bgimage" onLoad="formfocus()">
 <h1 id="thetitle">Cook Nooks!</h1>
 
+<div id="welcomeMessage">
+	Welcome, {{user.nickname}}!
+</div>	
+
+<div id="listingTitle">
+	My Cookbooks
+</div>
+
+<div id="cookbookListing">
+{% for cookbook in cookbooks %}
+	<a href="/{{cookbook.key.name}}">{{cookbook.name}}</a>
+	<br></br>
+{% endfor %}
+</div>
+
+
+
+
+
 
 <form action ="" method ="post" accept-charset ="utf-8">
 	<p id="para1">My name:   <input type="text" name="author" value= "" id="author"></p>

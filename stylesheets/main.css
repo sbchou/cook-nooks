@@ -1,8 +1,8 @@
 /*hyperlink effects*/
 
-A:link {text-decoration: none}
-A:visited {color: #000000; text-decoration: none}
-A:active {color: #000000; text-decoration: none}
+A:link {color: blue; text-decoration: none}
+A:visited {color: blue; text-decoration: none}
+A:active {color: blue; text-decoration: none}
 A:hover {background-color:#FF704D}
 
 body
@@ -26,6 +26,30 @@ background-color:#fdedaa
 font-family: 'Cabin Sketch', cursive;
 font-size: 4em;
 text-align:center;
+}
+
+#welcomeMessage
+{
+text-align:center;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+font-size: 20px;
+letter-spacing:1px;
+}
+
+#listingTitle
+{
+text-align:center;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+font-size: 20px;
+letter-spacing:1px;
+}
+
+#cookbookListing
+{
+text-align:center;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+font-size: 20px;
+letter-spacing:1px;
 }
 
 #credit

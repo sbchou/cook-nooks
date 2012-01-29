@@ -42,7 +42,7 @@ class MainPage(webapp.RequestHandler):
 			for item in cookbook_query:
 				cookbooks.append(item)		
 			
-			values = {'user': user, 'cookbooks': cookbook, error_state': error_state, 'no_errors': no_errors}
+			values = {'user': user, 'cookbooks': cookbooks, 'error_state': error_state, 'no_errors': no_errors}
 			self.response.out.write(template.render("main.html", values))
 		else:
 			self.redirect(users.create_login_url(self.request.uri))
