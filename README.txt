@@ -12,8 +12,7 @@ Cook-Nooks is a work-in-progress, so use with caution!
 There may be some funky stuff going on as we implement features and patch things up.
 
 To-Do:
-
-Delete whole book
+Search cookbook (or user?) function
 Print recipe feature
 Email recipe feature
 Filter, order
