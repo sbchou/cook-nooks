@@ -1,0 +1,54 @@
+/*hyperlink effects*/
+
+A:link {color: blue; text-decoration: none}
+A:visited {color: blue; text-decoration: none}
+A:active {color: blue; text-decoration: none}
+A:hover {background-color:#FF704D}
+
+body
+{
+background-color:#fdedaa
+;
+}
+
+
+#thetitle
+{
+font-family: 'Cabin Sketch', cursive;
+font-size: 4em;
+text-align:center;
+}
+
+#credit
+{
+margin-top: 350px;
+font-family: 'Cabin Sketch', cursive;
+font-size: 1.2 em;
+text-align:center;
+}
+
+#logo{
+margin-top: 5%;
+text-align: center;
+}
+
+#startLink
+{
+text-align:center;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+font-size: 20px;
+letter-spacing:1px;
+}
+
+#intro
+{
+float: left;
+margin-top: 5%;
+margin-left: 30%;
+margin-right: 30%;
+margin-bottom: 10%;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+font-size: 1.1 em;
+text-align: center;
+letter-spacing:1px;
+}
