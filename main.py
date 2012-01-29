@@ -226,7 +226,7 @@ class DeleteHandler(webapp.RequestHandler):
 		self.redirect('/' + cookbook_key)
     
 def main():
-	app = webapp.WSGIApplication([(r'/$', MainPage), (r'/mess/(\w*?)', RecipeHandler), (r'/([\w\-]+?)', CookbookPageHandler), (r'/delete/([\w\-]+?)/(.*?)', DeleteHandler)], debug=True)
+	app = webapp.WSGIApplication([(r'/main', MainPage), (r'/mess/(\w*?)', RecipeHandler), (r'/([\w\-]+?)', CookbookPageHandler), (r'/delete/([\w\-]+?)/(.*?)', DeleteHandler)], debug=True)
 	wsgiref.handlers.CGIHandler().run(app)
 
 #implements program

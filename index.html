@@ -1,0 +1,62 @@
+<html>
+<head>
+<link href='http://fonts.googleapis.com/css?family=Sofia|Droid+Serif|Cabin+Sketch' rel='stylesheet' type='text/css'>
+
+<script language="javascript" type="text/javascript">
+		function formfocus() {
+			document.getElementById('author').focus();
+			}
+</script>
+<link rel="stylesheet" type="text/css" href="/stylesheets/intro.css" />
+<title>Cook Nooks!</title>
+</head>
+<body class="bgimage" onLoad="formfocus()">
+<h1 id="thetitle">Cook Nooks!</h1>
+
+<div id="welcomeMessage">
+	Welcome, {{user.nickname}}!
+</div>	
+
+<div id="listingTitle">
+	My Cookbooks
+</div>
+
+<div id="cookbookListing">
+{% for cookbook in cookbooks %}
+	<a href="/{{cookbook.key.name}}">{{cookbook.name}}</a>
+	<br></br>
+{% endfor %}
+</div>
+
+<div id="formTitle">
+	Make a new cookbook!
+</div>
+
+<form action ="" method ="post" accept-charset ="utf-8">
+	<p id="para1">My cookbook title: <input type="text" name="cookbookName" value="" id="cookbookName"></p>
+	<p id ="logo"><img src="stylesheets/logo.png" alt="logo" width="323" height="319" /></p>
+	<p id="para2"><input type= "submit" value="Create my Cook Nook!"></p>
+</form>
+
+
+{% if no_errors %}
+<div id="intro">A simple and user-friendly option to store a personal recipe log (to share, or not to share!) for chefs and foodies in their own little nook of the web instead of an old Google Doc. Cook-Nooks can be accessed directly via its URL and its super-simple recipe posting makes it easier on smartphones.
+</div>
+{% endif %}
+
+{% ifequal error_state 1 %}
+<div id="error">Please enter a cookbook name!</div>
+{% endifequal %}
+
+{% ifequal error_state 2 %}
+<div id="error">Sorry, that cookbook name is already taken.</div>
+{% endifequal %}
+
+{% ifequal error_state 4 %}
+<div id="error">Cookbook names can contain letters, digits and underscores only.</div>
+{% endifequal %}
+
+<div id="credit">a <a href="http://www.mpetitchou.com/">Sophie Chou</a> creation</div>
+
+</body>
+</html>
