@@ -215,7 +215,7 @@ class RecipeHandler(webapp.RequestHandler):
 			recipes.append(item)		
 		self.response.out.write(template.render("chatscreen.html", {'recipes':recipes}))
 
-class DeleteHandler(webapp.RequestHandler):
+class DeleteRecipeHandler(webapp.RequestHandler):
 #needs to handle exceptions...
 
     def get(self, cookbook_id, recipe_key):
@@ -224,9 +224,18 @@ class DeleteHandler(webapp.RequestHandler):
 		my_recipe = Recipe.get_by_key_name(recipe_key, parent = myCookbook)
 		my_recipe.delete()		 
 		self.redirect('/' + cookbook_key)
+		
+class DeleteCookbookHandler(webapp.RequestHandler):
+#needs to handle exceptions...
+
+    def get(self, cookbook_id):
+   		cookbook_key = cookbook_id
+		myCookbook = Cookbook.get_by_key_name(cookbook_key)
+		myCookbook.delete()		 
+		self.redirect('/main')
     
 def main():
-	app = webapp.WSGIApplication([(r'/main', MainPage), (r'/mess/(\w*?)', RecipeHandler), (r'/([\w\-]+?)', CookbookPageHandler), (r'/delete/([\w\-]+?)/(.*?)', DeleteHandler)], debug=True)
+	app = webapp.WSGIApplication([(r'/main', MainPage), (r'/mess/(\w*?)', RecipeHandler), (r'/([\w\-]+?)', CookbookPageHandler), (r'/delete/([\w\-]+?)/(.*?)', DeleteRecipeHandler), (r'/delete/([\w\-]+?)', DeleteCookbookHandler)], debug=True)
 	wsgiref.handlers.CGIHandler().run(app)
 
 #implements program

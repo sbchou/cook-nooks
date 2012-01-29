@@ -12,15 +12,6 @@ background-color:#fdedaa
 }
 
 
-/*.bgimage
-{
-	background-image: url("cooknooks_bkgd.png");
-	background-repeat: no-repeat;
-}
-*/
-
-
-
 #thetitle
 {
 font-family: 'Cabin Sketch', cursive;
@@ -79,30 +70,6 @@ letter-spacing:1px;
 text-align:center;
 font-family: "Trebuchet MS", Helvetica, sans-serif;
 font-size: 20px;
-letter-spacing:1px;
-}
-
-/*Style of input fields*/
-
-#cookbookName
-{
-}
-
-#logo{
-margin-top: 5%;
-text-align: center;
-}
-
-#intro
-{
-float: left;
-margin-top: 5%;
-margin-left: 30%;
-margin-right: 30%;
-margin-bottom: 10%;
-font-family: "Trebuchet MS", Helvetica, sans-serif;
-font-size: 1.1 em;
-text-align: center;
 letter-spacing:1px;
 }
 

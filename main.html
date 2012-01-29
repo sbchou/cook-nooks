@@ -22,10 +22,16 @@
 </div>
 
 <div id="cookbookListing">
-{% for cookbook in cookbooks %}
-	<a href="/{{cookbook.key.name}}">{{cookbook.name}}</a>
-	<br></br>
-{% endfor %}
+{% ifequal cookbooks.__len__ 0 %}
+	<p>You have no cookbooks yet! What are you waiting for?</p>
+	
+{% else %}
+
+	{% for cookbook in cookbooks %}
+		<p><a href="/{{cookbook.key.name}}">{{cookbook.name}}</a></p>
+	{% endfor %}
+	
+{% endifequal %}
 </div>
 
 <div id="formTitle">
@@ -34,15 +40,10 @@
 
 <form action ="" method ="post" accept-charset ="utf-8">
 	<p id="para1">My cookbook title: <input type="text" name="cookbookName" value="" id="cookbookName"></p>
-	<p id ="logo"><img src="stylesheets/logo.png" alt="logo" width="323" height="319" /></p>
 	<p id="para2"><input type= "submit" value="Create my Cook Nook!"></p>
 </form>
 
 
-{% if no_errors %}
-<div id="intro">A simple and user-friendly option to store a personal recipe log (to share, or not to share!) for chefs and foodies in their own little nook of the web instead of an old Google Doc. Cook-Nooks can be accessed directly via its URL and its super-simple recipe posting makes it easier on smartphones.
-</div>
-{% endif %}
 
 {% ifequal error_state 1 %}
 <div id="error">Please enter a cookbook name!</div>
