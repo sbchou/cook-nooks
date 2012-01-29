@@ -15,7 +15,7 @@
 			{{ myCookbook.name }}
 		</div>
 		<div id= "cookbookAuthor">
-			a cookbook by {{myCookbook.author}}
+			a cookbook by {{myCookbook.user.nickname}}
 		</div>
 
 		<div id="recipecontent">
@@ -51,6 +51,13 @@
 			<a href="{{ logout_url }}">Logout!</a>
 			{% endif %}
 		</div>
+		
+		<div id="back">
+			<a href="\">Take me back to the main page!</a>
+		</div>
+		
+		
+		
 		
 		<div id="error">
 		{% ifequal error_state 3 %}

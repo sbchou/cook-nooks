@@ -52,6 +52,14 @@ font-size: 20px;
 letter-spacing:1px;
 }
 
+#formTitle
+{
+text-align:center;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+font-size: 20px;
+letter-spacing:1px;
+}
+
 #credit
 {
 margin-top: 350px;
@@ -74,19 +82,8 @@ font-size: 20px;
 letter-spacing:1px;
 }
 
-#para3 
-{
-text-align:center;
-font-family: "Trebuchet MS", Helvetica, sans-serif;
-font-size: 20px;
-letter-spacing:1px;
-}
-
 /*Style of input fields*/
 
-#author
-{
-}
 #cookbookName
 {
 }

@@ -16,12 +16,11 @@ from google.appengine.api import users
 
 class Cookbook(db.Model):
 	user = db.UserProperty(required = True)
-	author = db.StringProperty(required = False)
 	name = db.StringProperty(required = True)
 	#the difference b/t the name and the key name is that key name replaces the whitespaces with dashes
 	date = db.DateTimeProperty(auto_now_add = True)
 
-#defines single model for program, a recipe has content, author, date
+#defines single model for program, a recipe has content, date
 class Recipe(db.Model):
 	title = db.StringProperty(required = True)
 	content = db.TextProperty()  
@@ -68,7 +67,7 @@ class MainPage(webapp.RequestHandler):
 			#if no cookbook with this id exists make new cookbook, with the FORMATTED name (no whitespace!) as its key
 
 			if Cookbook.get_by_key_name(cookbook_key) == None:
-				new_cookbook = Cookbook(key_name = cookbook_key, user = users.get_current_user(), author = self.request.get('author'), name = self.request.get('cookbookName'))
+				new_cookbook = Cookbook(key_name = cookbook_key, user = users.get_current_user(), name = self.request.get('cookbookName'))
 				new_cookbook.put()
 				self.redirect('/' + cookbook_key)
 

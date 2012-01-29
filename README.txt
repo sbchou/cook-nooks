@@ -8,11 +8,11 @@ Created because I wanted an easier and more aesthetically appealing way to store
 In short: a recipe box Hemingway would approve of!
 
 WARNING:
-Cook-Nooks is still evolving, so please use with caution! 
+Cook-Nooks is a work-in-progress, so use with caution!
+There may be some funky stuff going on as we implement features and patch things up.
 
 To-Do:
 
-List all books per user
 Delete whole book
 Print recipe feature
 Email recipe feature
