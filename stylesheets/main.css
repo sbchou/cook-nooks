@@ -31,8 +31,9 @@ letter-spacing:1px;
 {
 text-align:center;
 font-family: "Trebuchet MS", Helvetica, sans-serif;
-font-size: 20px;
+font-size: 30px;
 letter-spacing:1px;
+color: purple
 }
 
 #cookbookListing
@@ -47,8 +48,9 @@ letter-spacing:1px;
 {
 text-align:center;
 font-family: "Trebuchet MS", Helvetica, sans-serif;
-font-size: 20px;
+font-size: 30px;
 letter-spacing:1px;
+color: purple
 }
 
 #credit

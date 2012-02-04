@@ -64,7 +64,7 @@ letter-spacing:1px;
 #title
 {
 font-family: "Trebuchet MS", Helvetica, sans-serif;
-font-size: 25px;
+font-size: 30px;
 text-align:center;
 letter-spacing:1px;
 }
@@ -89,13 +89,6 @@ letter-spacing:1px;
 color:red
 }
 
-#logoutLink
-{
-text-align:center;
-font-family: "Trebuchet MS", Helvetica, sans-serif;
-font-size: 20px;
-letter-spacing:1px;
-}
 
 #back
 {
@@ -114,4 +107,12 @@ font-size: 20px;
 letter-spacing:1px;
 }
 
+
+#logoutLink
+{
+text-align:center;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+font-size: 20px;
+letter-spacing:1px;
+}
 
